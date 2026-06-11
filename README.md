@@ -15,7 +15,7 @@ Historical Formula 1 data from the [Formula 1 World Championship dataset on Kagg
 ## Approach
  
 - **Data preparation:** merged race results with driver, constructor, circuit and race metadata using pandas; cleaned missing values (`\N` entries), flagged DNFs, and imputed missing grid positions and lap speeds with medians
-- **Feature engineering:** rolling form features computed with `shift(1)` so each prediction only uses information available *before* the race (no data leakage) — driver and constructor average finish over the last 5 races — plus grid position indicators (front row, top 5, top 10 start)
+- **Feature engineering:** rolling form features computed with `shift(1)` so each prediction only uses information available *before* the race (no data leakage) - driver and constructor average finish over the last 5 races — plus grid position indicators (front row, top 5, top 10 start)
 - **Train/test split:** time-based rather than random — trained on 2010–2020, tested on 2021–2024 — to simulate predicting genuinely unseen future seasons
 - **Models compared:** Logistic Regression, Random Forest, Gradient Boosting and XGBoost, all configured to handle class imbalance (class weights / sample weights / `scale_pos_weight`)
 - **Evaluation:** accuracy, precision, recall, F1 and ROC-AUC on the test set, plus confusion matrix, ROC curve, feature importance, and 5-fold TimeSeriesSplit cross-validation
